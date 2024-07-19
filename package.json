@@ -1,5 +1,5 @@
 {
-  "name": "lca-client",
+  "name": "transcribe-streaming-client",
   "version": "0.1.0",
   "private": true,
   "author": "Babu Srinivasan",
@@ -22,13 +22,19 @@
   "keywords": [],
   "dependencies": {
     "@aws-sdk/client-transcribe-streaming": "^3.326.0",
+    "block-stream2": "^2.1.0",
     "commander": "^9.4.0",
     "dotenv": "^16.0.3",
-    "stream-chain": "^2.2.5"
+    "fluent-ffmpeg": "^2.1.3",
+    "stream-chain": "^2.2.5",
+    "through": "^2.3.8"
   },
   "devDependencies": {
+    "@types/block-stream2": "^2.1.3",
+    "@types/fluent-ffmpeg": "^2.1.24",
     "@types/node": "^16.11.1",
     "@types/stream-chain": "^2.0.1",
+    "@types/through": "^0.0.33",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "eslint": "^7.32.0",

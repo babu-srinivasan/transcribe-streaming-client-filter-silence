@@ -2,19 +2,20 @@
 //SPDX-License-Identifier: Apache-2.0
 
 import { Command  } from 'commander';
-import { CallSimulator } from './CallSimulator';
 import * as fs from 'fs';
 
+import { Transcriber } from './transcriber';
+  
 new Command()
     .description('Transcribe Streaming API Client Sample')
     
     .showHelpAfterError()
     
     .argument('<media-filename>', 'Required: Call recording file name - stereo only')
-    .argument('<sample-rate>', 'Required: sample rate of the audio file')
     .argument('[region]', 'Optional: AWS Region. Default to AWS_REGION or us-east-1')
 
-    .action((mediaFileName: string, sampleRate: number, region: string): void => {
+    .action(async (mediaFileName: string, region: string): Promise<void> => {
+       
         try {
             fs.accessSync(mediaFileName, fs.constants.R_OK);
         } catch (err) {
@@ -27,9 +28,9 @@ new Command()
             console.info('Region parameter was not provided. Defaulted to us-east-1');
         }
 
-        const callsimulator = new CallSimulator(mediaFileName, sampleRate, region);
+        const transcriber = new Transcriber(mediaFileName, region);
         (async () => {
-            await callsimulator.writeTranscriptEvents();
+            await transcriber.startTranscription();
         })();
 
     })
